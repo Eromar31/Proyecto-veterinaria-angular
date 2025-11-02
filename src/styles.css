@@ -1,0 +1,282 @@
+
+/* Bootstrap (asset-based) */
+/* Bootstrap (asset-based) */
+@import url('assets/huellitas/css/bootstrap-reboot.css');
+@import url('assets/huellitas/css/bootstrap-grid.css');
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+
+
+/* You can add global styles to this file, and also import other style files */
+@import "bootstrap/dist/css/bootstrap.min.css";
+/* === Huellitas custom styles appended === */
+body {
+	margin: 0;
+	height: 100vh;
+}
+
+.content {
+	padding: 20px;
+	text-align: center;
+}
+
+footer {
+	margin-top: 20px;
+	text-align: center;
+}
+
+iframe {
+	width: 100%;
+	height: 400px;
+	border: none;
+	margin: 20px auto;
+	border-radius: 10px;
+}
+
+
+
+/* whattsapp*/
+
+#whatsapp-button {
+	position: fixed;
+	/* Fija el botón en la pantalla */
+	bottom: 20px;
+	/* Distancia desde el borde inferior */
+	right: 20px;
+	/* Distancia desde el borde derecho */
+	z-index: 1000;
+	/* Asegura que el botón esté por encima de otros elementos */
+	background-color: transparent;
+	/* Fondo transparente */
+	border-radius: 50%;
+	/* Hace que el botón sea redondo */
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+	/* Sombra para el botón */
+	padding: 10px;
+	/* Espaciado alrededor de la imagen */
+}
+
+#whatsapp-button img {
+	display: block;
+	/* Elimina el espacio extra debajo de la imagen */
+	width: 60px;
+	/* Ajusta el tamaño del icono */
+	height: 60px;
+	/* Ajusta el tamaño del icono */
+}
+
+
+/* Efecto hover */
+
+#whatsapp-button:hover {
+	background-color: #25D366;
+	/* Cambia el fondo cuando el ratón pasa sobre el botón */
+	border-radius: 50%;
+	/* Mantiene el redondeo al hacer hover */
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+	/* Sombra más pronunciada al hacer hover */
+}
+
+
+/* SOBRE NOSOTROS*/
+
+.sobre-nosotros {
+	background-color: #377FB2;
+	color: rgb(253, 248, 248);
+	padding: 50px 30px;
+}
+
+.sobre-nosotros h2 {
+	font-weight: bold;
+}
+
+
+
+/* configuracion de imagen principal */
+
+.hero-section {
+	position: relative;
+	margin-top: 80px;
+	min-height: 90vh;
+	/* Altura mínima de la sección */
+	display: flex;
+	color: rgb(156, 198, 238);
+}
+
+.background {
+	width: 100%;
+}
+
+.background img {
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+
+
+/* carrusel*/
+
+.carousel-container {
+	width: 100%;
+	overflow: hidden;
+	background-color: white;
+	padding: 20px 0;
+}
+
+.carousel {
+	display: flex;
+	gap: 15px;
+	animation: scroll 5s linear infinite;
+}
+
+.carousel img {
+	width: 150px;
+	height: auto;
+	border-radius: 10px;
+	object-fit: contain;
+	transition: transform 0.10s;
+}
+
+.carousel img:hover {
+	transform: scale(1.1);
+}
+
+
+/* Animación para el desplazamiento continuo */
+
+@keyframes scroll {
+	0% {
+		transform: translateX(0);
+	}
+	100% {
+		transform: translateX(calc(-50% - 15px));
+		/* Desplazamiento completo */
+	}
+}
+
+
+/*DERECHOS RESERVADOS*/
+
+.derechos {
+	background-color: #377FB2;
+	color: rgb(253, 248, 248);
+	padding: 5px;
+}
+
+
+/* Estilo del botón */
+
+#boton-modal {
+	position: absolute;
+	bottom: 20px;
+	/* Distancia desde el borde inferior */
+	right: 250px;
+	/* Distancia desde el borde derecho */
+	z-index: 10;
+	/* Asegura que el botón esté por encima de la imagen */
+	width: 190px;
+	/* Ajusta el ancho del botón */
+	height: 80px;
+	/* Ajusta la altura del botón */
+	font-size: 1rem;
+	/* Ajusta el tamaño del texto */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 30px;
+	/* Opcional, para bordes redondeados */
+	background-color: #ffca28;
+	/* Cambia este valor al color que desees (naranja en este caso) */
+	color: white;
+	/* Cambia el color del texto a blanco */
+}
+
+#boton-modal:hover {
+	background-color: pink;
+	/* Color de fondo cuando el mouse pasa sobre el botón */
+	cursor: pointer;
+	/* Cambia el cursor al pasar por encima */
+}
+
+
+/* contactanos*/
+
+#contactanos {
+	background-color: rgb(234, 242, 247);
+}
+
+
+/* Contenedor general */
+
+.contact-icons {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	padding: 20px;
+	background-color: #f4f4f4;
+	border-radius: 10px;
+	width: 250px;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Elementos de contacto */
+
+.contact-item {
+	display: flex;
+	align-items: center;
+	margin-bottom: 10px;
+	font-size: 1rem;
+	color: #333;
+}
+
+.contact-item i {
+	margin-right: 10px;
+	color: #007bff;
+	/* Color de los iconos */
+}
+
+
+/* Redes sociales */
+
+.social-media {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 20px;
+	width: 100%;
+}
+
+.social-icon {
+	font-size: 1.5rem;
+	color: #007bff;
+	/* Color de los iconos de redes sociales */
+	text-decoration: none;
+}
+
+.social-icon:hover {
+	color: #0056b3;
+	/* Color al pasar el ratón sobre los iconos */
+}
+
+
+/* Responsividad: se adapta a pantallas más pequeñas */
+
+@media (max-width: 600px) {
+	.contact-icons {
+		width: 100%;
+		padding: 10px;
+	}
+
+
+}
+#especialidades .card:hover {
+    transform: translateY(-10px);
+ /* Animacion de especialidades */   background-color: #7595ec !important;
+}
+
+/* tamaño de tarjetas de especialidades */
+.card-text { min-height: 7rem;
+
+}

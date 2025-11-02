@@ -1,0 +1,29 @@
+.admin-container {
+  max-width: 800px;
+  margin: 100px auto;
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.admin-container h1 {
+  color: #d49b00;
+  font-weight: 700;
+  text-align: center;
+}
+
+.admin-container p {
+  text-align: center;
+  color: #555;
+}
+
+.table {
+  margin-top: 20px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.btn-danger {
+  font-size: 0.85rem;
+}

@@ -1,0 +1,90 @@
+<div class="auth-overlay" *ngIf="mostrarAuth">
+  <div class="auth-modal">
+    <button class="close-btn" (click)="cerrarAuth()">×</button>
+
+    <!-- LOGIN -->
+    <div *ngIf="!showRegister">
+      <h2>Iniciar Sesión</h2>
+      <form (ngSubmit)="handleLogin($event)" #loginForm="ngForm">
+        <label>Correo Electrónico</label>
+        <input
+          type="text"
+          [(ngModel)]="username"
+          name="username"
+          required
+        />
+
+        <label>Contraseña</label>
+        <input
+          type="password"
+          [(ngModel)]="password"
+          name="password"
+          required
+        />
+
+        <p class="error" *ngIf="error">{{ error }}</p>
+
+        <button type="submit" class="btn-primary">Iniciar Sesión</button>
+      </form>
+
+      <p class="switch">
+        ¿No tienes cuenta?
+        <a (click)="handleShowRegister()">Regístrate aquí</a>
+      </p>
+    </div>
+
+    <!-- REGISTER -->
+    <div *ngIf="showRegister">
+      <h2>Crear Cuenta</h2>
+      <form (ngSubmit)="handleRegister($event)" #registerForm="ngForm">
+        <label>Correo Electrónico</label>
+        <input
+          type="text"
+          [(ngModel)]="username"
+          name="username"
+          required
+        />
+
+        <label>Contraseña</label>
+        <input
+          type="password"
+          [(ngModel)]="password1"
+          name="password1"
+          required
+        />
+
+        <label>Confirmar Contraseña</label>
+        <input
+          type="password"
+          [(ngModel)]="password2"
+          name="password2"
+          required
+        />
+
+        <div class="terms">
+          <input
+            type="checkbox"
+            [(ngModel)]="termsAccepted"
+            name="terms"
+          />
+          <span>Acepto los términos y condiciones</span>
+        </div>
+
+        <p class="error" *ngIf="error">{{ error }}</p>
+
+        <button
+          type="submit"
+          class="btn-primary"
+          [disabled]="!termsAccepted"
+        >
+          Crear Cuenta
+        </button>
+      </form>
+
+      <p class="switch">
+        ¿Ya tienes cuenta?
+        <a (click)="handleShowRegister()">Inicia sesión</a>
+      </p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+<h2>Registrar Mascota</h2>
+
+<form (ngSubmit)="registrarMascota()">
+  <input [(ngModel)]="nombre" name="nombre" placeholder="Nombre" required>
+  <input [(ngModel)]="especie" name="especie" placeholder="Especie" required>
+  <input [(ngModel)]="edad" name="edad" type="number" placeholder="Edad" required>
+
+  <select [(ngModel)]="idDueno" name="idDueno" required>
+    <option value="">-- Seleccionar Dueño --</option>
+    <option *ngFor="let d of duenos" [value]="d.id">{{ d.nombre }}</option>
+  </select>
+
+  <button type="submit">Registrar</button>
+</form>
+
+<h3>Lista de Mascotas</h3>
+<ul>
+  <li *ngFor="let m of mascotas">
+    {{m.nombre}} ({{m.especie}}, {{m.edad}} años) - Dueño ID: {{m.idDueno}}
+  </li>
+</ul>

@@ -1,0 +1,56 @@
+.footer-container {
+    background-color: #1e293b; /* azul oscuro */
+    color: #e2e8f0;
+    text-align: center;
+    padding: 2rem 1rem;
+    font-family: 'Poppins', sans-serif;
+}
+
+.footer-top .brand {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.footer-top .desc {
+    color: #94a3b8;
+    font-size: 0.95rem;
+}
+
+.footer-links {
+    margin: 1.5rem 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.footer-links a {
+    color: #e2e8f0;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+    color: #38bdf8;
+}
+
+.footer-bottom {
+    border-top: 1px solid #334155;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    font-size: 0.85rem;
+    color: #94a3b8;
+}
+
+.footer-container { background:#394a66; color:#e2e8f0; text-align:center; padding:2rem 1rem; }
+.footer-links { margin:1rem 0; display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
+.footer-links a { color:#e2e8f0; text-decoration:none; }
+.footer-links a:hover { text-decoration:underline; }
+
+.social { list-style:none; padding:0; margin:1rem 0 0; display:flex; gap:1rem; justify-content:center; }
+.social a { color:#e2e8f0; text-decoration:none; font-weight:600; }
+.social a:hover { color:#38bdf8; }
+
+.footer-bottom { margin-top:1rem; border-top:1px solid #334155; padding-top:1rem; color:#94a3b8; font-size:.9rem; }

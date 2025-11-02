@@ -1,0 +1,16 @@
+<footer class="footer-container">
+    <div class="footer-top">
+        <p class="brand">🐾 Huellitas Programadoras</p>
+        <p class="desc">Cuidamos, amamos y damos hogar a quienes más lo necesitan</p>
+    </div>
+    <ul class="social" aria-label="Redes sociales">
+        <li *ngFor="let s of social">
+            <a [href]="s.href" target="_blank" rel="noopener">{{ s.name }}</a>
+        </li>
+    </ul>
+
+    <div class="footer-bottom">
+        <p>© {{ year }} Huellitas Programadoras - Todos los derechos reservados</p>
+    </div>
+
+</footer>

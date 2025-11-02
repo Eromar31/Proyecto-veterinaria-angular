@@ -1,0 +1,15 @@
+<h2>Registrar Dueño</h2>
+
+<form (ngSubmit)="registrarDueno()">
+  <input [(ngModel)]="nombre" name="nombre" placeholder="Nombre" required>
+  <input [(ngModel)]="dni" name="dni" placeholder="DNI" required>
+  <input [(ngModel)]="telefono" name="telefono" placeholder="Teléfono" required>
+  <button type="submit">Registrar</button>
+</form>
+
+<h3>Lista de Dueños</h3>
+<ul>
+  <li *ngFor="let d of duenos">
+    {{d.nombre}} ({{d.dni}}) - {{d.telefono}}
+  </li>
+</ul>

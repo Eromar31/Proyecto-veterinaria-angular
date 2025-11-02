@@ -1,0 +1,31 @@
+<section class="admin-container">
+  <h1>Panel del Administrador</h1>
+  <p>Aquí puedes ver el historial de citas registradas.</p>
+
+  <table *ngIf="citas.length > 0; else sinCitas" class="table table-bordered mt-3">
+    <thead class="table-warning">
+      <tr>
+        <th>#</th>
+        <th>Cliente</th>
+        <th>Fecha</th>
+        <th>Hora</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let c of citas; index as i">
+        <td>{{ i + 1 }}</td>
+        <td>{{ c.nombre }}</td>
+        <td>{{ c.fecha }}</td>
+        <td>{{ c.hora }}</td>
+        <td>
+          <button class="btn btn-sm btn-danger" (click)="eliminarCita(i)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <ng-template #sinCitas>
+    <p class="text-muted mt-3">No hay citas registradas aún.</p>
+  </ng-template>
+</section>
