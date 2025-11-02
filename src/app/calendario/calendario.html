@@ -2,3 +2,57 @@
 <div class="container mt-3">
   <full-calendar [options]="calendarOptions"></full-calendar>
 </div>
+
+<!-- Wizard / modal simple -->
+<div class="wizard-backdrop" *ngIf="wizardAbierto">
+  <div class="wizard-card">
+    <button class="btn-close float-end" (click)="cerrarWizard()"></button>
+
+    <!-- Paso 1 -->
+    <ng-container *ngIf="paso === 1">
+      <h5 class="mb-3">① Selecciona el tipo de servcio</h5>
+      <div class="d-flex flex-wrap gap-2">
+        <button
+          class="btn"
+          [ngClass]="{
+            'btn-primary': mesaIdSeleccionada === m.id,
+            'btn-outline-primary': mesaIdSeleccionada !== m.id
+          }"
+          *ngFor="let m of mesas"
+          (click)="elegirMesa(m.id)"
+        >
+          {{ m.nombre }}
+        </button>
+      </div>
+    </ng-container>
+
+    <!-- Paso 2 -->
+    <ng-container *ngIf="paso === 2">
+      <h5 class="mb-3">② Selecciona una hora</h5>
+      <select class="form-select" [(ngModel)]="horaSeleccionada">
+        <option [ngValue]="null" disabled selected>Selecciona…</option>
+        <option *ngFor="let h of horas" [value]="h">{{ h }}</option>
+      </select>
+
+      <div class="d-flex justify-content-between mt-3">
+        <button class="btn btn-link" (click)="paso = 1">Atrás</button>
+        <button class="btn btn-primary" [disabled]="!horaSeleccionada" (click)="continuarConHora()">
+          Siguiente
+        </button>
+      </div>
+    </ng-container>
+
+    <!-- Paso 3 -->
+    <ng-container *ngIf="paso === 3">
+      <h5 class="mb-3">③ Confirmación</h5>
+      <p class="mb-1"><strong>Fecha:</strong> {{ fechaISO }}</p>
+      <p class="mb-1"><strong>Mesa:</strong> {{ mesaIdSeleccionada }}</p>
+      <p class="mb-3"><strong>Hora:</strong> {{ horaSeleccionada }}</p>
+
+      <div class="d-flex justify-content-between">
+        <button class="btn btn-link" (click)="paso = 2">Atrás</button>
+        <button class="btn btn-success" (click)="confirmarReserva()">Confirmar</button>
+      </div>
+    </ng-container>
+  </div>
+</div>

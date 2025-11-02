@@ -14,3 +14,14 @@ h2 {
   padding: 20px;
   box-shadow: 0 3px 10px rgba(0,0,0,0.1);
 }
+/* calendario.css */
+.wizard-backdrop{
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.45);
+  display: grid; place-items: center;
+  z-index: 1050;
+}
+.wizard-card{
+  background: #fff; width: 420px; max-width: 92vw;
+  padding: 20px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,.2);
+}
