@@ -5,90 +5,108 @@ import { FormsModule } from '@angular/forms';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
-import { ReservasService, Mesa } from '../services/reservas.service';
-
+import { ReservasService, ServicioVeterinario } from '../services/reservas.service';
+ 
 @Component({
   selector: 'app-calendario',
   standalone: true,
-  // 👇 importa directivas usadas en el HTML
-  imports: [CommonModule, FormsModule, FullCalendarModule, NgIf, NgFor, NgClass],
+  imports: [CommonModule, FormsModule, FullCalendarModule, NgIf, NgFor],
   templateUrl: './calendario.html',
   styleUrl: './calendario.css',
 })
 export class Calendario {
-  // UI / Wizard
+ 
+  // Wizard UI
   wizardAbierto = false;
   paso = 1;
-
-  // Estado
+ 
+  // Estado general
   fechaISO: string | null = null;
-  mesas: Mesa[] = [];
-  mesaIdSeleccionada: number | null = null;
+ 
+  // Paso 1 — Servicios veterinarios
+  servicios: ServicioVeterinario[] = [];
+  servicioSeleccionado: number | null = null;
+ 
+  // Paso 2 — Horas disponibles
   horas: string[] = [];
   horaSeleccionada: string | null = null;
-
-  // FullCalendar
+ 
+  // FullCalendar config
   calendarOptions: any = {
     plugins: [dayGridPlugin, interactionPlugin],
     initialView: 'dayGridMonth',
     selectable: false,
-    // usa dateClick (clic simple) y delega a método de la clase
     dateClick: (arg: { date: Date; dateStr: string }) => this.onDateClick(arg),
   };
-
+ 
   constructor(
     private reservasSrv: ReservasService,
     private zone: NgZone,
     private cdr: ChangeDetectorRef
   ) {}
-
-  // Clic en un día
+ 
+  // Usuario hace clic en una fecha del calendario
   async onDateClick(info: { date: Date; dateStr: string }) {
-    // Asegura que el cambio corre dentro de Angular (FullCalendar dispara fuera)
     this.zone.run(async () => {
+     
       const hoy = new Date(); hoy.setHours(0, 0, 0, 0);
       const f   = new Date(info.date); f.setHours(0, 0, 0, 0);
-
-      if (f < hoy) { alert('No puedes agendar en fechas pasadas.'); return; }
-
+ 
+      if (f < hoy) {
+        alert('No puedes agendar en fechas pasadas.');
+        return;
+      }
+ 
+      // Guardamos fecha seleccionada
       this.fechaISO = info.dateStr;
-
-      // Carga mesas (fechaISO ya no es null aquí)
-      this.mesas = await this.reservasSrv.getMesasDisponibles(this.fechaISO!);
-
-      // reset y abre wizard
+ 
+      // Cargamos servicios veterinarios
+      this.servicios = await this.reservasSrv.getServicios();
+ 
+      // Reset del wizard
       this.paso = 1;
-      this.mesaIdSeleccionada = null;
+      this.servicioSeleccionado = null;
       this.horas = [];
       this.horaSeleccionada = null;
+ 
       this.wizardAbierto = true;
-
-      // fuerza refresco inmediato (a veces útil con overlays)
       this.cdr.detectChanges();
     });
   }
-
-  cerrarWizard() { this.wizardAbierto = false; }
-
-  // Paso 1 → Paso 2
-  async elegirMesa(mesaId: number) {
-    this.mesaIdSeleccionada = mesaId;
-    if (!this.fechaISO) return;
-    this.horas = await this.reservasSrv.getHorasDisponibles(this.fechaISO, mesaId);
+ 
+  cerrarWizard() {
+    this.wizardAbierto = false;
+  }
+ 
+  // Paso 1 → Paso 2 (luego de seleccionar servicio)
+  async continuarConServicio() {
+    if (!this.servicioSeleccionado || !this.fechaISO) return;
+ 
+    this.horas = await this.reservasSrv.getHorasDisponibles(
+      this.fechaISO,
+      this.servicioSeleccionado
+    );
+ 
     this.horaSeleccionada = null;
     this.paso = 2;
   }
-
+ 
   // Paso 2 → Paso 3
   continuarConHora() {
     if (!this.horaSeleccionada) return;
     this.paso = 3;
   }
-
-  // Confirmación
+ 
+  // Confirmación final
   confirmarReserva() {
-    if (!this.fechaISO || !this.mesaIdSeleccionada || !this.horaSeleccionada) return;
-    alert(`✅ Reserva confirmada para el ${this.fechaISO}, mesa ${this.mesaIdSeleccionada} a las ${this.horaSeleccionada}.`);
+    if (!this.fechaISO || !this.servicioSeleccionado || !this.horaSeleccionada) return;
+ 
+    alert(
+      `✅ Cita confirmada:\n
+📅 Fecha: ${this.fechaISO}
+🐾 Servicio ID: ${this.servicioSeleccionado}
+⏰ Hora: ${this.horaSeleccionada}`
+    );
     this.cerrarWizard();
   }
 }
